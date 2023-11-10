@@ -39,7 +39,7 @@ resource "aws_security_group" "securitygroup" {
 
 resource "aws_instance" "ec2instance" {
   instance_type = "t2.micro"
-  ami = "ami-03d8059563982d7b0" # https://cloud-images.ubuntu.com/locator/ec2/ (Ubuntu)
+  ami = "ami-0310483fb2b488153" # https://cloud-images.ubuntu.com/locator/ec2/ (Ubuntu)
   subnet_id = aws_subnet.instance.id
   security_groups = [aws_security_group.securitygroup.id]
   key_name = aws_key_pair.ssh.key_name
