@@ -1,6 +1,6 @@
 resource "aws_subnet" "nat_gateway" {
-  availability_zone       = var.availability_zones[count.index]
-  cidr_block = "10.0.3.0/24"
+  availability_zone = data.aws_availability_zones.available.names[0]
+  cidr_block = "10.0.2.0/24"
   vpc_id = aws_vpc.vpc.id
   tags = {
     "Name" = "DemoSubnetNAT"
