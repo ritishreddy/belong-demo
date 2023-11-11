@@ -10,7 +10,7 @@ resource "aws_instance" "ec2jumphost" {
     volume_size = "10"
   }
   tags = {
-    "Name" = "DemoMachineJumphost"
+    "Name" = "BelongMachineJumphost"
   }
 }
 
