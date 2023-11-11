@@ -52,6 +52,7 @@ resource "aws_instance" "ec2instance" {
   key_name = aws_key_pair.ssh.key_name
   disable_api_termination = false
   ebs_optimized = false
+  user_data     = file("init_script.sh")
   root_block_device {
     volume_size = "10"
   }
