@@ -47,7 +47,7 @@ resource "aws_security_group" "securitygroup" {
 resource "aws_instance" "ec2instance" {
   instance_type = "t2.micro"
   ami = "ami-07b5c2e394fccab6e" # https://cloud-images.ubuntu.com/locator/ec2/ (Ubuntu)
-  subnet_id = aws_subnet.instance.id
+  subnet_id = aws_subnet.private_instance.id
   security_groups = [aws_security_group.securitygroup.id]
   key_name = aws_key_pair.ssh.key_name
   disable_api_termination = false
@@ -67,7 +67,7 @@ output "instance_private_ip" {
 resource "aws_instance" "ec2instance1" {
   instance_type = "t2.micro"
   ami = "ami-07b5c2e394fccab6e" # https://cloud-images.ubuntu.com/locator/ec2/ (Ubuntu)
-  subnet_id = aws_subnet.instance.id
+  subnet_id = aws_subnet.private_instance.id
   security_groups = [aws_security_group.securitygroup.id]
   key_name = aws_key_pair.ssh.key_name
   disable_api_termination = false
