@@ -64,3 +64,23 @@ resource "aws_instance" "ec2instance" {
 output "instance_private_ip" {
   value = aws_instance.ec2instance.private_ip
 }
+resource "aws_instance" "ec2instance1" {
+  instance_type = "t2.micro"
+  ami = "ami-07b5c2e394fccab6e" # https://cloud-images.ubuntu.com/locator/ec2/ (Ubuntu)
+  subnet_id = aws_subnet.instance.id
+  security_groups = [aws_security_group.securitygroup.id]
+  key_name = aws_key_pair.ssh.key_name
+  disable_api_termination = false
+  ebs_optimized = false
+  user_data     = file("init_script.sh")
+  root_block_device {
+    volume_size = "10"
+  }
+  tags = {
+    "Name" = "BelongMachinePrivate1"
+  }
+}
+
+output "instance_private_ip1" {
+  value = aws_instance.ec2instance.private_ip
+}
