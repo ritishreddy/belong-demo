@@ -56,7 +56,7 @@ resource "aws_instance" "ec2instance" {
     volume_size = "10"
   }
   tags = {
-    "Name" = "DemoMachine"
+    "Name" = "BelongMachinePrivate"
   }
 }
 
