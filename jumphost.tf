@@ -1,6 +1,6 @@
 resource "aws_instance" "ec2jumphost" {
   instance_type = "t2.micro"
-  ami = "ami-0310483fb2b488153" # https://cloud-images.ubuntu.com/locator/ec2/ (Ubuntu)
+  ami = "ami-062680d0a2ee357d0" # https://cloud-images.ubuntu.com/locator/ec2/ (Ubuntu)
   subnet_id = aws_subnet.nat_gateway.id
   security_groups = [aws_security_group.securitygroup.id]
   key_name = aws_key_pair.ssh.key_name
