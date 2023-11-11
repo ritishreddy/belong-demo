@@ -16,20 +16,15 @@ variable "availability_zones" {
   type    = list(string)
   default = ["ap-southeast-2a", "ap-southeast-2b"]
 }
-resource "aws_subnet" "instance" {
-  availability_zone = var.availability_zones[count.index] 
-  cidr_block = "10.0.1.0/24"
-  vpc_id = aws_vpc.vpc.id
-  tags = {
-    "Name" = "DemoSubnetInstance"
-  }
-}
 resource "aws_subnet" "private_subnet" {
   count                   = length(var.availability_zones)
   vpc_id                  = aws_vpc.my_vpc.id
   cidr_block              = "10.0.${count.index + 1}.0/24"
   availability_zone       = var.availability_zones[count.index]
   map_public_ip_on_launch = false
+  tags = {
+    "Name" = "DemoprivateSubnetInstance"
+  }
 }
 
 resource "aws_subnet" "public_subnet" {
@@ -38,4 +33,7 @@ resource "aws_subnet" "public_subnet" {
   cidr_block              = "10.0.${count.index + 2}.0/24"
   availability_zone       = var.availability_zones[count.index]
   map_public_ip_on_launch = true
+  tags = {
+    "Name" = "DemopublicSubnetInstance"
+  }
 }
